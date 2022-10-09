@@ -1,7 +1,0 @@
-INDEX VERSION 1.131+/home/kennethp/POO-workspace/.metadata/.plugins/org.eclipse.jdt.core
-3941589655.index
-3130789466.index
-1865797976.index
-2949097923.index
-1176237848.index
-823969678.index
