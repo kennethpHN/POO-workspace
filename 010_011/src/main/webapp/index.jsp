@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<meta name="author" content="kenneth.pineda@unah.hn">
 		<meta name="version" content="0.1.0">
-		<meta name="date" content="2022-09-26">
+		<meta name="date" content="2022-09-27">
 		<title>Cajas HTML</title>
 	</head>
 	<body>
