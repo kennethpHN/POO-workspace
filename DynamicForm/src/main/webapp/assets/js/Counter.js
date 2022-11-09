@@ -5,7 +5,7 @@
 	@date 2022-02-17
  */
  
-Class Counter{
+class Counter{
 	
 	constructor(name){
 		this.name = name;

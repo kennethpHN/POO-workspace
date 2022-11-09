@@ -19,8 +19,8 @@ let dynamicFormTag = document.querySelector("form#dynamicForm")
 let addTitleButton = document.querySelector("input#addTitleButton");
 addTitleButton.addEventListener("click",dynamicForm.createTitle.bind(dynamicSection));
 
-let addPragraphButton = document.querySelector("input#addPragraphButton");
-addPragraphButton.addEventListener("click",dynamicForm.createParagraph.bind(dynamicSection));
+let addParagraphButton = document.querySelector("input#addParagraphButton");
+addParagraphButton.addEventListener("click",dynamicForm.createParagraph.bind(dynamicSection));
 
 let sendButton = document.querySelector("input#sendButton");
 sendButton.addEventListener("click",dynamicForm.send.bind(dynamicFormTag));
