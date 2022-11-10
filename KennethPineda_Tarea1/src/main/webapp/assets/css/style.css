@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Open Sans sans-serif";
+}
+
+body{
+	text-align: center;
+	padding: 25vw;
+	padding-top: 5vw;
+	background-color: rgb(114, 159, 207);
+}
+
+
+textarea[name="HTMLParagraph"] {
+  height: 200px;
+}
+
+input,textarea{
+	width: 500px;
+	margin-bottom: 3px;
+}
+
