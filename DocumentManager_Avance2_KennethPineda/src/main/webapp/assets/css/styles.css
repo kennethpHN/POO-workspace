@@ -1,0 +1,35 @@
+body{
+	background-color: #F0F4F9;
+}
+
+.doc-list-card{
+	background-color: #C1D5EA;
+}
+
+.list-document-item{
+	padding: 20px 16px;
+}
+
+.doc-info{
+	background-color: #23395b;
+	color: #e2e9f4;
+}
+
+.doc-info2{
+	background-color: #8ea8c3;
+	color: #2a3d50;
+}
+
+.info-card{
+	background-color: #C1D5EA;
+}
+
+.clmodal-btn{
+	background-color: #23395b;
+	color: #e2e9f4;
+}
+
+.savemodal-btn{
+	background-color: #8ea8c3;
+	color: #2a3d50;
+}
