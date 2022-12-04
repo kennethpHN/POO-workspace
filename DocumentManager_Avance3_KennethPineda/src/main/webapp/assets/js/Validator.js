@@ -15,4 +15,11 @@ class Validator{
 	removeSpecialCharacters(text){
 		return `${text}`.trim().replace(/[^\w \t.,-:áéíóúüÁÉÍÓÚÜñÑ]+/g,"");
 	}
+	
+	emailValidate (text){
+		if (`${text}`.trim().match(/^[\w.]+@[\w]+(\.[a-zA-Z]{2,})+$/)){
+			return true;
+		}return false;
+		
+	}
 }
