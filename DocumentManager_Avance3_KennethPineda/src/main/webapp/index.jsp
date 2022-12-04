@@ -7,7 +7,7 @@
 <meta name="author" content="kenneth.pineda@unah.hn">
 <meta name="version" content="0.1.1">
 <meta name="date" content="2022-12-04">
-<title>Insert title here</title>
+<title>Sistema de Registro de Documentos</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
