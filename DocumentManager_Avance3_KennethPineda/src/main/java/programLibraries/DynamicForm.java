@@ -66,6 +66,24 @@ public class DynamicForm {
 	
 	public String readForm(HttpServletRequest request) {
 		
+		//Funcionalidades del DAO
+		
+		Validator validator=new Validator();
+		
+		if(request.getParameter("emailInput")!=null && validator.isEmail(request.getParameter("emailInput").toString())
+				&& request.getParameter("informationInput")!=null){
+			String email=request.getParameter("emailInput");
+			String informationInput=validator.removeSpecialCharacters(validator.removeHTML(request.getParameter("informationInput")));
+			String documentCode = validator.removeSpecialCharacters(validator.removeHTML(request.getParameter("documentCode")));
+			
+			
+			DAOCSV daoCSV = new DAOCSV();
+			DAOCSVResponse daoCSVResponse = daoCSV.createModel("1",email,documentCode,informationInput);
+		}
+		
+		//-----------------------
+		
+		
 		//Un constructor de cadenas para construir la respuesta
 		StringBuilder result = new StringBuilder();
 		StringBuilder listBuilder = new StringBuilder();
