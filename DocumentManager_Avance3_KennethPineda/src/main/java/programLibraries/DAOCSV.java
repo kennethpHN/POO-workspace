@@ -1,5 +1,8 @@
 package programLibraries;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DAOCSV {
 	
 	public DAOCSVResponse createModel (String number,String email,String documentCode,String information) {
@@ -18,6 +21,30 @@ public class DAOCSV {
 		response.setPath(path);
 		return response;
 		
+	}
+	
+	public Map<Integer,String> getDocumentList(){
+		Map<Integer,String> documentList = new HashMap<>();
+		FileManager fm=new FileManager();
+		FileManagerResponse fmr=fm.read("eclipse/Folder/temporalFIle.csv");
+		
+		if(fmr.isStatus()) {
+			String textContent=fmr.getContent();
+			String textLines[]=textContent.split("\\n+");
+			
+			for (String row : textLines) {
+				String columns[]=row.split(",");
+				documentList.put(Integer.parseInt(columns[0]), columns[1]);
+			}
+		}
+		
+		return documentList;
+	}
+	
+	public String getDocument(int DocumentCode) {
+		Map<Integer,String> documentList=this.getDocumentList();
+		String document = documentList.get(DocumentCode).toString();
+		return document;
 	}
 	
 }

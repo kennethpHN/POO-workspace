@@ -33,7 +33,7 @@ public class CSV {
 	} 
 	
 	public String toString() {
-		return String.format("%s,emailInput=%s&documentCode=%s&informationInput=%s",
+		return String.format("%s,%s|%s|%s",
 				this.number,this.email,this.documentCode,this.information);
 	}
 }

@@ -2,6 +2,8 @@ package programLibraries;
 
 import java.util.Enumeration;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import jakarta.servlet.http.HttpServletRequest;
 /**
  * Permite entender los formularios dinamicos generados por el FrontEnd
@@ -79,6 +81,8 @@ public class DynamicForm {
 			
 			DAOCSV daoCSV = new DAOCSV();
 			DAOCSVResponse daoCSVResponse = daoCSV.createModel("1",email,documentCode,informationInput);
+			//return daoCSVResponse.getContent();
+			
 		}
 		
 		//-----------------------
@@ -100,16 +104,16 @@ public class DynamicForm {
 				//titleBuilder.append(this.forTitle("Documento - Revista"));
 				switch (Integer.parseInt(paramContent)) {
 				case 1:
-					titleBuilder.append(this.forTitle("Documento - Revista"));
+					titleBuilder.append(this.forTitle(". Documento - Revista"));
 					break;
 				case 2:
-					titleBuilder.append(this.forTitle("Documento - Libro"));
+					titleBuilder.append(this.forTitle(". Documento - Libro"));
 					break;
 				case 3:
-					titleBuilder.append(this.forTitle("Documento - Texto"));
+					titleBuilder.append(this.forTitle(". Documento - Texto"));
 					break;
 				case 4:
-					titleBuilder.append(this.forTitle("Documento - Imagen"));
+					titleBuilder.append(this.forTitle(". Documento - Imagen"));
 					break;
 
 				default:

@@ -9,7 +9,6 @@
 	
 	DynamicForm dynamicForm = new DynamicForm();
 	String result = dynamicForm.readForm(request);
-	
 	//Apertura del objeto de javascript generado mediante cadenas de texto
 	StringBuilder json = new StringBuilder("{");
 	
