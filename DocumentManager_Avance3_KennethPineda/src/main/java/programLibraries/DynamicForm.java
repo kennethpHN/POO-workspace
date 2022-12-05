@@ -6,8 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * Permite entender los formularios dinamicos generados por el FrontEnd
  * @author jose.inestroza@unah.edu.hn
- * @version 0.1.2
- *@date 2022/02/18
+ * @author kenneth.pineda@unah.hn
+ * @version 0.1.3
+ * @date 2022/12/04
  */
 
 public class DynamicForm {

@@ -34,7 +34,7 @@ public class PaymentManager {
 	
 	public String getServiceName(int serviceCode) {
 		//Lee el Modelo de Datos
-		DAOPaymentManagerServices dao=new DAOPaymentManagerServices("Documentos/CESM U/POO/Folder/PaymentManagerServicesDataBase.csv"); 
+		DAOPaymentManagerServices dao=new DAOPaymentManagerServices("Documentos/PaymentManagerServicesDataBase.csv"); 
 		Map<Integer,String> model=dao.getServices();
 		String serviceName=String.format("%s", model.get(serviceCode));
 		

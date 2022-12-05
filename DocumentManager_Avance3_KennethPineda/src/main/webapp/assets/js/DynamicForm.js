@@ -21,7 +21,8 @@ class DynamicForm {
 		for (let element of inputValues) {
 
 			let value = validator.removeHTML(element.value);
-			if (validator.emailValidate) {
+			
+			if (validator.emailValidate(value)) {
 				params.push(`${element.name}=${value}`);
 			} else {
 				value = validator.removeSpecialCharacters(value);
