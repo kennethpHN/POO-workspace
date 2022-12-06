@@ -258,10 +258,10 @@
 						<div class="row">
 							<div class="col"><p>Responsable:</p></div>
 							<div class="col"><p>correo@ejemplo.com</p></div>
-							<div class="col"><button class="btn clmodal-btn" id="infoModalWindow">Ver Descripción</button></div>
+							<div class="col" id="documentCodeDescriptor" data-name="documentCode" data-code="1"><button class="btn clmodal-btn" id="infoModalWindow">Ver Descripción</button></div>
 						</div>
 						</li>
-						<li class="list-document-item list-group-item">
+						<!--<li class="list-document-item list-group-item">
 						<h4>2. Documento - Revista</h4>
 						<div class="row">
 							<div class="col"><p>Responsable:</p></div>
@@ -292,7 +292,7 @@
 							<div class="col"><p>correo@ejemplo.com</p></div>
 							<div class="col"><button class="btn clmodal-btn" id="infoModalWindow">Ver Descripción</button></div>
 						</div>
-						</li>
+						</li> -->
 
 					</ul>
 				</div>

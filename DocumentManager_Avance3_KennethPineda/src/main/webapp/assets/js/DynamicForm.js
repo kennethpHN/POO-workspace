@@ -21,7 +21,7 @@ class DynamicForm {
 		for (let element of inputValues) {
 
 			let value = validator.removeHTML(element.value);
-			
+
 			if (validator.emailValidate(value)) {
 				params.push(`${element.name}=${value}`);
 			} else {
@@ -32,6 +32,19 @@ class DynamicForm {
 		}
 
 		return params.join("&");
+	}
+
+	getDocumentListCode(inputValue) {
+
+		let validator = new Validator();
+		let params = "";
+
+		let value = validator.removeHTML(inputValue.dataset.code);
+
+		value = validator.removeSpecialCharacters(value);
+
+		params = `${inputValue.dataset.name}=${inputValue.dataset.code}`;
+		return params;
 	}
 
 	send() {
@@ -154,4 +167,65 @@ class DynamicForm {
 		xhr.send(params);
 	}
 
+	sendModalRequest() {
+		let xhr = new XMLHttpRequest();
+		xhr.open(this.method, "descriptionService.jsp", true);
+
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+
+			if (this.readyState === XMLHttpRequest.DONE) {
+
+				if (this.status === 200) {
+					try {
+
+						//Se convierte el texto de respuesta recibido mediante AJAX, a un objeto de javascript
+						let json = JSON.parse(this.responseText);
+
+						//Se genera un acceso a la seccion de respuesta dinamica
+						let dynamicAnswer = document.querySelector("div#infoModal").querySelector("div.modal-content");
+
+						//Se limpia la seccion de respuesta dinamica por si existe una respuesta anterior
+						//dynamicAnswer.innerHTML = "e";
+						//dynamicAnswer.appendChild(document.createElement("br"));
+
+						//Status == true
+						if (json.status) {
+							dynamicAnswer.innerHTML = json.html;
+							
+							let infoModalAction = new Action();
+							infoModalAction.setId("infoModal");
+							infoModalAction.callFirstModal();
+						}
+
+						//Status == false
+						else {
+							//pendiente - Agregar funcionalidad para crear una modal con mensaje de error
+							alert(`${json.message}`);
+						}
+
+					} catch (exception) {
+						//pendiente - Agregar funcionalidad para excepciones
+						alert(`Ha ocurrido un error en la pagina web: ${exception}`);
+
+					}
+
+				} else {
+					//pendiente - Agregar funcionalidad para status de error
+					alert(`Ha ocurrido un error en la pagina web. El codigo de respuesta, es: ${this.status}`);
+
+
+				}
+
+			}
+		}
+		let params = this.getDocumentListCode(
+			document
+				.querySelector("ul#docList")
+				.querySelector("#documentCodeDescriptor")
+		);
+
+		xhr.send(params);
+	}
 }

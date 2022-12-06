@@ -1,12 +1,28 @@
+<%@page import="programLibraries.DynamicForm"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
 
-</body>
-</html>
+<%
+DynamicForm dynamicForm = new DynamicForm();
+String result = dynamicForm.buildModal(request);
+//Apertura del objeto de javascript generado mediante cadenas de texto
+StringBuilder json = new StringBuilder("{");
+
+//Cuando existe una respuesta correctamente procesada
+if (result.strip().length() > 0) {
+
+	json.append(String.format("\"status\": %s,", true));
+	json.append(String.format("\"html\": \"%s\"", result));
+}
+//Cuando los parametros recibidos no han generado una respuesta
+else {
+
+	json.append(String.format("\"status\": %s,", false));
+	json.append(String.format("\"message\": \" Los parametros recibidos no han generado una respuesta\""));
+}
+
+//Clausura del objeto de Javascript generado mediante cadenas de texto
+json.append("}");
+
+out.print(json.toString().replaceAll("\\n+", ""));
+%>

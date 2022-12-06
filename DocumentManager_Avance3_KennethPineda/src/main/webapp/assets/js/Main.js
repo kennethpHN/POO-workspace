@@ -21,15 +21,24 @@ clearListModalAction.setId("clearListModal");
 let clearListModalWindow = document.querySelector("button#clearListModalWindow");
 clearListModalWindow.addEventListener("click", clearListModalAction.callFirstModal.bind(clearListModalAction));
 
-let infoModalAction = new Action();
-infoModalAction.setId("infoModal");
-let infoModalWindow = document.querySelector("button#infoModalWindow");
-infoModalWindow.addEventListener("click", infoModalAction.callFirstModal.bind(infoModalAction));
+
+
+
 
 let dynamicForm = new DynamicForm();
 
 let sendButton = document.querySelector("div#addDocModal").querySelector("button#send-doc-btn");
 sendButton.addEventListener("click",dynamicForm.send.bind(dynamicForm));
+
+let modalDescriptionButton = document.querySelector("button#infoModalWindow");
+modalDescriptionButton.addEventListener("click",dynamicForm.sendModalRequest.bind(dynamicForm));
+
+
+
+/*let infoModalAction = new Action();
+infoModalAction.setId("infoModal");
+let infoModalWindow = document.querySelector("button#infoModalWindow");
+infoModalWindow.addEventListener("click", infoModalAction.callFirstModal.bind(infoModalAction));*/
 
 
 
