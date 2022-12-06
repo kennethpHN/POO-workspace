@@ -127,7 +127,7 @@ public class DynamicForm {
 			}else if(this.isEmail(paramName)) {
 				rowBuilder.append(this.forCol(this.forParagraph("Responsable: ")));
 				rowBuilder.append(this.forCol(this.forParagraph(paramContent)));
-				rowBuilder.append(this.forCol(this.forButton("Ver Descripción")));
+				rowBuilder.append(this.forCol("<button class='btn clmodal-btn' id='infoModalWindow'>Ver Descripción</button>"));
 			}
 			
 		}
@@ -135,7 +135,8 @@ public class DynamicForm {
 		if(titleBuilder.toString().length() > 0 && rowBuilder.toString().length() > 0) {
 			listBuilder.append(titleBuilder.toString());
 			listBuilder.append(this.forRow(rowBuilder.toString()));
-			result.append(this.forList(listBuilder.toString()));
+			//result.append(this.forList(listBuilder.toString()));
+			result.append(listBuilder.toString());
 			
 		}
 		
@@ -168,7 +169,7 @@ public class DynamicForm {
 		StringBuilder result  = new StringBuilder();
 		
 		infoParagraphBuilder.append(this.forDiv("modal-body",this.forParagraph(information)));
-		buttonBuilder.append(this.forDiv("modal-footer", this.forButton("Cerrar")));
+		buttonBuilder.append(this.forDiv("modal-footer", "<button type='button' class='btn clmodal-btn' data-bs-dismiss='modal'>Cerrar</button>"));
 		//System.out.println(Integer.parseInt(documentCode));
 		switch (Integer.parseInt(documentCode)) {
 		case 1:

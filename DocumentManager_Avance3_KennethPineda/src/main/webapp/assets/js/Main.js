@@ -29,8 +29,20 @@ let dynamicForm = new DynamicForm();
 let sendButton = document.querySelector("div#addDocModal").querySelector("button#send-doc-btn");
 sendButton.addEventListener("click",dynamicForm.send.bind(dynamicForm));
 
-let modalDescriptionButton = document.querySelector("button#infoModalWindow");
+/*let modalDescriptionButton = document.querySelector("button#infoModalWindow");
+modalDescriptionButton.addEventListener("click",dynamicForm.sendModalRequest.bind(dynamicForm));*/
+
+let modalDescriptionButton = document.querySelector("ul#docList");
 modalDescriptionButton.addEventListener("click",dynamicForm.sendModalRequest.bind(dynamicForm));
+
+
+let testAction = new Action();
+
+let testingelement = document.querySelector("ul#docList");
+testingelement.addEventListener("click",testAction.test.bind(testAction));
+
+
+
 
 
 

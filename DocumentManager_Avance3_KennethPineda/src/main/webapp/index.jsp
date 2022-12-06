@@ -23,7 +23,7 @@
 
 	<div class="modal fade" id="infoModal" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
-			<div class="modal-content">
+			<!-- <div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Entrada de documento de tipo X #1: correo@ejemplo.com</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -45,7 +45,7 @@
 					<button type="button" class="btn clmodal-btn"
 						data-bs-dismiss="modal">Cerrar</button>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -258,7 +258,7 @@
 						<div class="row">
 							<div class="col"><p>Responsable:</p></div>
 							<div class="col"><p>correo@ejemplo.com</p></div>
-							<div class="col" id="documentCodeDescriptor" data-name="documentCode" data-code="1"><button class="btn clmodal-btn" id="infoModalWindow">Ver Descripción</button></div>
+							<div class="col" id="documentCodeDescriptor" data-name="documentListCode" data-code="1"><button class="btn clmodal-btn" id="infoModalWindow">Ver Descripción</button></div>
 						</div>
 						</li>
 					</ul>

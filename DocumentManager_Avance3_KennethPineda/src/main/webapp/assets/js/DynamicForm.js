@@ -28,9 +28,17 @@ class DynamicForm {
 				value = validator.removeSpecialCharacters(value);
 				params.push(`${element.name}=${value}`);
 			}
+			
+			
 
 		}
-
+		
+		let lastchildList = document.querySelector("ul#docList").lastElementChild;
+			let elementWithCode = lastchildList.querySelector("div#documentCodeDescriptor");
+			if(lastchildList!=null){
+				params.push(`${elementWithCode.dataset.name}=${Number.parseInt(elementWithCode.dataset.code)+1}`);
+			}
+			
 		return params.join("&");
 	}
 
@@ -44,6 +52,7 @@ class DynamicForm {
 		value = validator.removeSpecialCharacters(value);
 
 		params = `${inputValue.dataset.name}=${inputValue.dataset.code}`;
+		alert(params);
 		return params;
 	}
 
@@ -68,7 +77,11 @@ class DynamicForm {
 						//Status == true
 						if (json.status) {
 
-							dynamicAnswer.innerHTML += json.html;
+							let htmlResponse = document.createElement("li");
+							htmlResponse.setAttribute("class", "list-document-item list-group-item");
+							htmlResponse.innerHTML = json.html;
+
+							dynamicAnswer.appendChild(htmlResponse);
 
 						}
 
@@ -102,66 +115,92 @@ class DynamicForm {
 
 		xhr.send(params);
 	}
-	
+
 	/**
 	Envia una petición para visualizar un modal con la información del documento
 	 */
-	sendModalRequest() {
-		let xhr = new XMLHttpRequest();
-		xhr.open(this.method, "descriptionService.jsp", true);
+	sendModalRequest(event) {
+		let elem = event.target.id;
+		if (elem.match("infoModalWindow")) {
+			let parent = event.target.parentNode;
+			let xhr = new XMLHttpRequest();
+			xhr.open(this.method, "descriptionService.jsp", true);
 
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-		xhr.onreadystatechange = function() {
+			xhr.onreadystatechange = function() {
 
-			if (this.readyState === XMLHttpRequest.DONE) {
+				if (this.readyState === XMLHttpRequest.DONE) {
 
-				if (this.status === 200) {
-					try {
+					if (this.status === 200) {
+						try {
 
-						//Se convierte el texto de respuesta recibido mediante AJAX, a un objeto de javascript
-						let json = JSON.parse(this.responseText);
+							//Se convierte el texto de respuesta recibido mediante AJAX, a un objeto de javascript
+							let json = JSON.parse(this.responseText);
 
-						//Se genera un acceso a la seccion de respuesta dinamica
-						let dynamicAnswer = document.querySelector("div#infoModal").querySelector("div.modal-content");
+							//Se genera un acceso a la seccion de respuesta dinamica
+							let dynamicAnswer = document.querySelector("div#infoModal").querySelector("div");
 
-						//Se limpia la seccion de respuesta dinamica por si existe una respuesta anterior
-						//Status == true
-						if (json.status) {
-							dynamicAnswer.innerHTML = json.html;
-							
-							let infoModalAction = new Action();
-							infoModalAction.setId("infoModal");
-							infoModalAction.callFirstModal();
+							//Se limpia la seccion de respuesta dinamica por si existe una respuesta anterior
+							//Status == true
+							if (json.status) {
+
+								let htmlResponse = document.createElement("div");
+								htmlResponse.setAttribute("class", "modal-content");
+								htmlResponse.innerHTML = json.html;
+								dynamicAnswer.innerHTML = "";
+								//dynamicAnswer.innerHTML = json.html;
+								dynamicAnswer.appendChild(htmlResponse);
+
+
+								let infoModalAction = new Action();
+								infoModalAction.setId("infoModal");
+								infoModalAction.callFirstModal();
+
+								/*
+								
+								let htmlResponse = document.createElement("li");
+								htmlResponse.setAttribute("class","list-document-item list-group-item");
+								htmlResponse.innerHTML = json.html;
+								
+								dynamicAnswer.appendChild(htmlResponse);
+								
+								
+								*/
+							}
+
+							//Status == false
+							else {
+								//pendiente - Agregar funcionalidad para crear una modal con mensaje de error
+								alert(`${json.message}`);
+							}
+
+						} catch (exception) {
+							//pendiente - Agregar funcionalidad para excepciones
+							alert(`Ha ocurrido un error en la pagina web: ${exception}`);
+
 						}
 
-						//Status == false
-						else {
-							//pendiente - Agregar funcionalidad para crear una modal con mensaje de error
-							alert(`${json.message}`);
-						}
+					} else {
+						//pendiente - Agregar funcionalidad para status de error
+						alert(`Ha ocurrido un error en la pagina web. El codigo de respuesta, es: ${this.status}`);
 
-					} catch (exception) {
-						//pendiente - Agregar funcionalidad para excepciones
-						alert(`Ha ocurrido un error en la pagina web: ${exception}`);
 
 					}
 
-				} else {
-					//pendiente - Agregar funcionalidad para status de error
-					alert(`Ha ocurrido un error en la pagina web. El codigo de respuesta, es: ${this.status}`);
-
-
 				}
-
 			}
-		}
-		let params = this.getDocumentListCode(
-			document
-				.querySelector("ul#docList")
-				.querySelector("#documentCodeDescriptor")
-		);
+			/*let params = this.getDocumentListCode(
+				document
+					.querySelector("ul#docList")
+					.querySelector("#documentCodeDescriptor")
+			);*/
+			
+			let params = this.getDocumentListCode(
+				parent
+			);
 
-		xhr.send(params);
+			xhr.send(params);
+		}
 	}
 }

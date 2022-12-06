@@ -22,8 +22,23 @@ class Action{
  	*/
 
 	callFirstModal(){
-
 		let modal = new bootstrap.Modal(document.querySelector(`#${this.modalId}`));
 		modal.show();
 	}
+	
+	test(event){
+		
+		let elem = event.target.id;
+		let pare = event.target.parentNode.parentNode.className;
+		//let id = elem.id();
+		//alert(elem);
+		if(elem.match("infoModalWindow")){
+
+			alert("prueba"+pare);
+		
+		}
+	
+	}
+	
+	
 }
