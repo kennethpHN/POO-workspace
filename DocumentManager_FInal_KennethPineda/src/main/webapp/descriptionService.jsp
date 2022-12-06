@@ -1,10 +1,10 @@
 <%@page import="programLibraries.DynamicForm"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+	pageEncoding="UTF-8"%>
 
 <%
 DynamicForm dynamicForm = new DynamicForm();
-String result = dynamicForm.readForm(request);
+String result = dynamicForm.buildModal(request);
 //Apertura del objeto de javascript generado mediante cadenas de texto
 StringBuilder json = new StringBuilder("{");
 
@@ -17,8 +17,8 @@ if (result.strip().length() > 0) {
 //Cuando los parametros recibidos no han generado una respuesta
 else {
 
-	json.append(String.format("\"status\": %s", false));
-	json.append(String.format(",\"message\": \" Los parametros recibidos no han generado una respuesta\""));
+	json.append(String.format("\"status\": %s,", false));
+	json.append(String.format("\"message\": \" Los parametros recibidos no han generado una respuesta\""));
 }
 
 //Clausura del objeto de Javascript generado mediante cadenas de texto
