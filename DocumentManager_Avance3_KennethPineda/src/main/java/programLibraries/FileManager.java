@@ -90,4 +90,16 @@ public class FileManager {
 			return new FileManagerResponse(e.toString());
 		}
 	}
+	
+	public FileManagerResponse cleanFile(String fileName) {
+		FileManagerResponse response = new FileManagerResponse();
+		
+		try {
+			Files.delete(Paths.get(String.format("%s/%s", this.path(),fileName)));
+			response.setStatus(true);
+			return response;
+		} catch (Exception e) {
+			return new FileManagerResponse(e.toString());
+		}
+	}
 }

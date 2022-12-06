@@ -33,11 +33,27 @@ class DynamicForm {
 
 		}
 		
-		let lastchildList = document.querySelector("ul#docList").lastElementChild;
+			try{
+			let lastchildList = document.querySelector("ul#docList").lastElementChild;
 			let elementWithCode = lastchildList.querySelector("div#documentCodeDescriptor");
 			if(lastchildList!=null){
 				params.push(`${elementWithCode.dataset.name}=${Number.parseInt(elementWithCode.dataset.code)+1}`);
 			}
+			}catch(error){
+				params.push("documentListCode=1");
+			}
+			
+			
+			/*
+			let lastchildList = document.querySelector("ul#docList").lastElementChild;
+			let elementWithCode = lastchildList.querySelector("div#documentCodeDescriptor");
+			if(lastchildList!=null){
+				params.push(`${elementWithCode.dataset.name}=${Number.parseInt(elementWithCode.dataset.code)+1}`);
+			}else{
+				params.push("documentListCode=1");
+			}
+			
+			*/
 			
 		return params.join("&");
 	}
@@ -52,7 +68,18 @@ class DynamicForm {
 		value = validator.removeSpecialCharacters(value);
 
 		params = `${inputValue.dataset.name}=${inputValue.dataset.code}`;
-		alert(params);
+		return params;
+	}
+	
+	getCleanCode(inputValue) {
+		let validator = new Validator();
+		let params = "";
+
+		let value = validator.removeHTML(inputValue.dataset.code);
+
+		value = validator.removeSpecialCharacters(value);
+
+		params = `${inputValue.dataset.code}=${inputValue.dataset.code}`;
 		return params;
 	}
 
@@ -82,6 +109,9 @@ class DynamicForm {
 							htmlResponse.innerHTML = json.html;
 
 							dynamicAnswer.appendChild(htmlResponse);
+							let action = new Action();
+							action.docCount();
+							
 
 						}
 
@@ -202,5 +232,54 @@ class DynamicForm {
 
 			xhr.send(params);
 		}
+	}
+	
+	sendCleanRequest(event){
+		let xhr = new XMLHttpRequest();
+		xhr.open(this.method, "cleanService.jsp", true);
+
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function() {
+			if (this.readyState === XMLHttpRequest.DONE) {
+
+				if (this.status === 200) {
+					try {
+						//Se convierte el texto de respuesta recibido mediante AJAX, a un objeto de javascript
+						let json = JSON.parse(this.responseText);
+
+						//Status == true
+						if (json.status) {
+							let listToClean = document.querySelector("ul#docList");
+							listToClean.innerHTML="";
+							alert("lista eliminada con exito");
+						}
+
+						//Status == false
+						else {
+							//pendiente - Agregar funcionalidad para crear una modal con mensaje de error
+							alert(`${json.message}`);
+						}
+
+					} catch (exception) {
+						//pendiente - Agregar funcionalidad para excepcion
+						alert(`Ha ocurrido un error en la pagina web: ${exception}`);
+
+					}
+
+				} else {
+					//pendiente - Agregar funcionalidad para status de error
+					alert(`Ha ocurrido un error en la pagina web. El codigo de respuesta, es: ${this.status}`);
+
+
+				}
+
+			}
+		}
+
+		let params = this.getCleanCode(
+			document.querySelector("button#clr-doc-btn"));
+
+		xhr.send(params);
 	}
 }

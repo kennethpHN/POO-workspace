@@ -27,6 +27,16 @@ public class DAOCSV {
 		
 	}
 	
+	DAOCSVResponse deleteModel() {
+		DAOCSVResponse response = new DAOCSVResponse();
+		FileManager fm = new FileManager();
+		FileManagerResponse cleanResponse = fm.cleanFile("eclipse/Folder/temporalFile.csv");
+		
+		response.setStatus(cleanResponse.isStatus());
+		
+		return response;
+	}
+	
 	private Map<Integer,String> getDocumentList(){
 		Map<Integer,String> documentList = new HashMap<>();
 		FileManager fm=new FileManager();
@@ -34,15 +44,13 @@ public class DAOCSV {
 		
 		if(fmr.isStatus()) {
 			String textContent=fmr.getContent();
-			/*String textLines[]=textContent.split("\\n+");
-			
-			for (String row : textLines) {
+			String documentRows[]=textContent.split("\\n+");
+			for (String row : documentRows) {
 				String columns[]=row.split(",");
 				documentList.put(Integer.parseInt(columns[0]), columns[1]);
-			}*/
-			String columns[]=textContent.split(",");
-			documentList.put(Integer.parseInt(columns[0]), columns[1]);
-			System.out.println(String.format("En DAOCSV: %s  %s",columns[0],columns[1]));
+				System.out.println(String.format("En DAOCSV: %s  %s",columns[0],columns[1]));
+			}
+			
 			
 		}
 		
@@ -53,9 +61,10 @@ public class DAOCSV {
 	 * @param DocumentCode
 	 * @return
 	 */
-	public String getDocument(int DocumentCode) {
+	public String getDocument(int documentCode) {
 		Map<Integer,String> documentList=this.getDocumentList();
-		String document = documentList.get(DocumentCode).toString();
+		String document = String.format("%s&", documentCode); 
+		document += documentList.get(documentCode).toString();
 		return document;
 	}
 	

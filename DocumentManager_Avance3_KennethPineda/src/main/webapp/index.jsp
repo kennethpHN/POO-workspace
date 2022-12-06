@@ -140,7 +140,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn clmodal-btn"
 						data-bs-dismiss="modal">Cerrar</button>
-					<button type="button" class="btn savemodal-btn" id="send-doc-btn">Guardar
+					<button type="button" class="btn savemodal-btn" data-bs-dismiss="modal" id="send-doc-btn">Guardar
 						cambios</button>
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn clmodal-btn"
 						data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn savemodal-btn" data-bs-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn savemodal-btn" data-bs-dismiss="modal" id="clr-doc-btn" data-code="clearModel">Aceptar</button>
 				</div>
 			</div>
 		</div>
@@ -211,8 +211,8 @@
 					<div class="info-card card text-center">
 						<div class="card-header">Total de Documentos</div>
 						<div class="card-body">
-							<p class="card-text">
-							<h1>5</h1>
+							<p class="card-text" id="documentCount">
+							<h1>0</h1>
 							</p>
 						</div>
 					</div>
@@ -253,14 +253,14 @@
 				<div class="h-75 doc-list-card card">
 					<div class="card-header">Documentos Registrados</div>
 					<ul class="list-group list-group-flush overflow-auto" id="docList">
-						<li class="list-document-item list-group-item">
+						<!--<li class="list-document-item list-group-item">
 						<h4>1. Documento - Revista</h4>
 						<div class="row">
 							<div class="col"><p>Responsable:</p></div>
 							<div class="col"><p>correo@ejemplo.com</p></div>
 							<div class="col" id="documentCodeDescriptor" data-name="documentListCode" data-code="1"><button class="btn clmodal-btn" id="infoModalWindow">Ver Descripción</button></div>
 						</div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 

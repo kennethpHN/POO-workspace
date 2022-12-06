@@ -28,15 +28,31 @@ class Action{
 	
 	test(event){
 		
-		let elem = event.target.id;
-		let pare = event.target.parentNode.parentNode.className;
+		let elementId = event.target.id;
+		let parent = event.target.parentNode.parentNode.className;
 		//let id = elem.id();
 		//alert(elem);
-		if(elem.match("infoModalWindow")){
+		if(elementId.match("infoModalWindow")){
 
-			alert("prueba"+pare);
+			alert("prueba"+parent);
 		
 		}
+	
+	}
+	
+	docCount(){
+		let documentCounter = document.querySelector("p#documentCount").nextSibling;
+		try{
+			let lastchildList = document.querySelector("ul#docList").lastElementChild;
+			let elementWithCode = lastchildList.querySelector("div#documentCodeDescriptor");
+			if(lastchildList!=null){
+				documentCounter.innerHTML = "";
+				documentCounter.innerHTML = elementWithCode.dataset.code;		
+			}
+			}catch(error){
+			}
+		
+		
 	
 	}
 	

@@ -21,7 +21,7 @@ public class CSV {
 	}
 	
 	public String toString() {
-		return String.format("%s,%s|%s|%s",
+		return String.format("%s,%s&%s&%s",
 				this.number,this.email,this.documentCode,this.information);
 	}
 }
